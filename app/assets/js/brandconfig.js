@@ -10,6 +10,6 @@ module.exports = Object.freeze({
     minecraftVersion: '1.20.1',
     fabricLoaderVersion: '0.19.3',
     managedResourcePack: 'ROW-1.20.1-Unpacked-Original',
+    managedShaderPack: 'ComplementaryReimagined_r5.8.1.zip',
     githubRepository: 'https://github.com/phans913/ripige-launcher'
 })
-

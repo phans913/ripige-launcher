@@ -8,6 +8,8 @@ const DEFAULT_OPTIONS = [
     'version:3465',
     'gamma:1.0',
     'guiScale:3',
+    'soundCategory_master:0.15',
+    'soundCategory_music:0.0',
     `resourcePacks:["vanilla","fabric","file/${BrandConfig.managedResourcePack}"]`,
     'incompatibleResourcePacks:[]',
     ''
@@ -225,4 +227,3 @@ module.exports = {
     ensureServerEntry,
     findServersList
 }
-

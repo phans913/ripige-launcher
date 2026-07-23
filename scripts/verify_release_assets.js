@@ -32,10 +32,14 @@ assert.equal(server.modules.filter(module => module.rawModule.type === 'FabricMo
 const resourcePackFiles = manifest.files.filter(file =>
     file.path.startsWith(`instances/${BrandConfig.instanceId}/resourcepacks/${BrandConfig.managedResourcePack}/`)
 )
+const shaderPackFiles = manifest.files.filter(file =>
+    file.path.startsWith(`instances/${BrandConfig.instanceId}/shaderpacks/`)
+)
 const managedMods = manifest.files.filter(file => file.path.startsWith('common/mods/fabric/'))
 assert.equal(resourcePackFiles.length, 921)
 assert.equal(managedMods.length, 3)
-assert.equal(manifest.files.some(file => file.path.endsWith('.zip')), false)
+assert.equal(resourcePackFiles.some(file => file.path.endsWith('.zip')), false)
+assert.deepEqual(shaderPackFiles.map(file => path.posix.basename(file.path)), [BrandConfig.managedShaderPack])
 
 const archiveEntries = archive.getEntries().filter(entry => !entry.isDirectory).map(entry => entry.entryName.replace(/\\/g, '/')).sort()
 assert.deepEqual(archiveEntries, manifest.files.map(file => file.path).sort())
@@ -54,6 +58,7 @@ process.stdout.write(`${JSON.stringify({
     address: server.rawServer.address,
     managedMods: managedMods.length,
     resourcePackFiles: resourcePackFiles.length,
+    shaderPacks: shaderPackFiles.length,
     archiveEntries: archiveEntries.length
 }, null, 2)}\n`)
 

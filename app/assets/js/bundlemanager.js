@@ -10,6 +10,7 @@ const BrandConfig = require('./brandconfig')
 const DEFAULT_MANIFEST_URL = 'https://github.com/phans913/ripige-launcher/releases/latest/download/bundle-manifest.json'
 const MANAGED_MOD_PREFIX = 'common/mods/fabric/'
 const MANAGED_PACK_PREFIX = `instances/${BrandConfig.instanceId}/resourcepacks/${BrandConfig.managedResourcePack}/`
+const MANAGED_SHADER_PREFIX = `instances/${BrandConfig.instanceId}/shaderpacks/`
 
 function getConfiguredManifestUrl() {
     const candidates = [
@@ -177,6 +178,7 @@ function applyBundleArchive({ archivePath, dataDirectory, cacheDirectory, manife
 
         installManagedMods(stageDirectory, dataDirectory, manifest, previousManifest)
         installManagedResourcePack(stageDirectory, dataDirectory)
+        installManagedShaderPacks(stageDirectory, dataDirectory, manifest, previousManifest)
     } finally {
         fs.removeSync(stageDirectory)
     }
@@ -226,6 +228,25 @@ function installManagedResourcePack(stageDirectory, dataDirectory) {
             fs.moveSync(backupPack, targetPack)
         }
         throw error
+    }
+}
+
+function installManagedShaderPacks(stageDirectory, dataDirectory, manifest, previousManifest) {
+    const nextShaders = manifest.files.filter(file => file.path.startsWith(MANAGED_SHADER_PREFIX))
+    const nextPaths = new Set(nextShaders.map(file => file.path))
+    for(const file of nextShaders) {
+        const source = resolveManagedPath(stageDirectory, file.path)
+        const target = resolveManagedPath(dataDirectory, file.path)
+        const incoming = `${target}.incoming`
+        fs.ensureDirSync(path.dirname(target))
+        fs.copyFileSync(source, incoming)
+        fs.moveSync(incoming, target, { overwrite: true })
+    }
+
+    for(const file of previousManifest?.files || []) {
+        if(file.path.startsWith(MANAGED_SHADER_PREFIX) && !nextPaths.has(file.path)) {
+            fs.removeSync(resolveManagedPath(dataDirectory, file.path))
+        }
     }
 }
 
@@ -299,12 +320,14 @@ function isAllowedManagedPath(value) {
     } catch(_error) {
         return false
     }
-    return normalized.startsWith(MANAGED_MOD_PREFIX) || normalized.startsWith(MANAGED_PACK_PREFIX)
+    return normalized.startsWith(MANAGED_MOD_PREFIX)
+        || normalized.startsWith(MANAGED_PACK_PREFIX)
+        || normalized.startsWith(MANAGED_SHADER_PREFIX)
 }
 
 function isAllowedManagedDirectory(value) {
     const normalized = normalizeArchivePath(value)
-    return [MANAGED_MOD_PREFIX, MANAGED_PACK_PREFIX].some(prefix =>
+    return [MANAGED_MOD_PREFIX, MANAGED_PACK_PREFIX, MANAGED_SHADER_PREFIX].some(prefix =>
         prefix.startsWith(`${normalized}/`) || `${normalized}/`.startsWith(prefix)
     )
 }

@@ -46,6 +46,8 @@ function main() {
     if(!fs.statSync(resourcePackDirectory).isDirectory()) {
         throw new Error(`Managed resource pack directory is missing: ${resourcePackDirectory}`)
     }
+    const shaderPackPath = path.join(instanceDirectory, 'shaderpacks', BrandConfig.managedShaderPack)
+    assertFile(shaderPackPath)
 
     const loaderId = `fabric-loader-${BrandConfig.fabricLoaderVersion}-${BrandConfig.minecraftVersion}`
     const loaderJar = path.join(
@@ -119,6 +121,12 @@ function main() {
         const archivePath = `instances/${BrandConfig.instanceId}/resourcepacks/${BrandConfig.managedResourcePack}/${relativePath}`
         addManagedFile(zip, sourcePath, archivePath, managedFiles)
     }
+    addManagedFile(
+        zip,
+        shaderPackPath,
+        `instances/${BrandConfig.instanceId}/shaderpacks/${BrandConfig.managedShaderPack}`,
+        managedFiles
+    )
 
     const bundleName = 'ripige-modpack-bundle.zip'
     const bundlePath = path.join(releaseDirectory, bundleName)
@@ -192,6 +200,7 @@ function main() {
         mods: MOD_FILES.length,
         fabricLibraries: copiedLibraryFiles.size,
         resourcePackFiles: resourcePackFiles.length,
+        shaderPacks: 1,
         managedFiles: managedFiles.length,
         bundleBytes: bundleStats.size,
         releaseDirectory

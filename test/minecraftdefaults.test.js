@@ -17,6 +17,8 @@ test('first options file uses vanilla controls and preserves later user changes'
         const initial = fs.readFileSync(optionsPath, 'utf8')
         assert.match(initial, /^guiScale:3$/m)
         assert.match(initial, /^gamma:1\.0$/m)
+        assert.match(initial, /^soundCategory_master:0\.15$/m)
+        assert.match(initial, /^soundCategory_music:0\.0$/m)
         assert.match(initial, new RegExp(`file/${BrandConfig.managedResourcePack}`))
         assert.doesNotMatch(initial, /^key_/m)
 
@@ -67,4 +69,3 @@ test('auto connect is enabled by default contract but remains user-toggleable', 
         []
     )
 })
-
