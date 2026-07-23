@@ -10,7 +10,7 @@ const LAUNCHER_BACKGROUND_IMAGE = 'assets/images/backgrounds/ripige.png'
 
 const AuthManager   = require('./assets/js/authmanager')
 const ConfigManager = require('./assets/js/configmanager')
-const { DistroAPI } = require('./assets/js/distromanager')
+const { DistroAPI, getInitialDistribution } = require('./assets/js/distromanager')
 
 let rscShouldLoad = false
 let fatalStartupError = false
@@ -436,7 +436,7 @@ document.addEventListener('readystatechange', async () => {
         if(rscShouldLoad){
             rscShouldLoad = false
             if(!fatalStartupError){
-                const data = await DistroAPI.getDistribution()
+                const data = await getInitialDistribution()
                 await showMainUI(data)
             } else {
                 showFatalStartupError()
@@ -449,7 +449,7 @@ document.addEventListener('readystatechange', async () => {
 // Actions that must be performed after the distribution index is downloaded.
 ;(async () => {
     try {
-        const data = await DistroAPI.getDistribution()
+        const data = await getInitialDistribution()
         syncModConfigurations(data)
         ensureJavaSettings(data)
         if(document.readyState === 'interactive' || document.readyState === 'complete'){
@@ -458,6 +458,7 @@ document.addEventListener('readystatechange', async () => {
             rscShouldLoad = true
         }
     } catch(err) {
+        console.error('[Launcher Initialization Error]', err)
         fatalStartupError = true
         if(document.readyState === 'interactive' || document.readyState === 'complete'){
             showFatalStartupError()

@@ -29,8 +29,17 @@ const api = new DistributionAPI(
     false
 )
 
+let initialDistributionPromise = null
+
 if(exports.REMOTE_DISTRO_URL == null) {
     api.pullRemote = async () => ({ data: null })
+}
+
+exports.getInitialDistribution = function() {
+    if(initialDistributionPromise == null) {
+        initialDistributionPromise = api.getDistribution()
+    }
+    return initialDistributionPromise
 }
 
 exports.DistroAPI = api
