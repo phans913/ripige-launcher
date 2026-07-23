@@ -1,0 +1,34 @@
+appId: 'kr.phans.ripige.launcher'
+productName: '리피지 런처'
+artifactName: 'Ripige-Launcher-Setup-${version}.${ext}'
+copyright: 'Copyright © 2026 phans913'
+
+asar: true
+compression: 'maximum'
+
+files:
+  - '**/*'
+  - '!{dist,.git,.github,.vscode,node_modules,release,release-input,tmp}'
+  - '!{package-lock.json,branding-background.png}'
+  - '!scripts/**'
+  - '!test/**'
+
+extraResources:
+  - 'libraries'
+
+win:
+  icon: 'build/icon.ico'
+  signExecutable: false
+  target:
+    - target: 'nsis'
+      arch: 'x64'
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+
+directories:
+  buildResources: 'build'
+  output: 'dist'

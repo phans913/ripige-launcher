@@ -1,0 +1,23 @@
+# Custom language overrides for 리피지 런처
+
+[ejs.app]
+title = "리피지 런처"
+
+[ejs.landing]
+mediaGitHubURL = "https://github.com/phans913/ripige-launcher"
+mediaXURL = "#"
+mediaInstagramURL = "#"
+mediaYouTubeURL = "#"
+mediaDiscordURL = "#"
+mediaSoopURL = "#"
+mediaChzzkURL = "#"
+screenshotsTooltip = "스크린샷"
+
+[ejs.settings]
+sourceGithubLink = "https://github.com/phans913/ripige-launcher"
+supportLink = "https://github.com/phans913/ripige-launcher/issues"
+
+[ejs.welcome]
+welcomeHeader = "리피지 런처"
+welcomeDescription = "Minecraft 1.20.1 Fabric 전용 런처입니다."
+welcomeDescCTA = "계속 버튼을 눌러 Microsoft 계정으로 로그인해 주세요."

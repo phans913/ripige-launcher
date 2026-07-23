@@ -1,0 +1,56 @@
+{
+  "name": "ripige-launcher",
+  "version": "1.0.0",
+  "productName": "리피지 런처",
+  "description": "Minecraft 1.20.1 Fabric launcher for 리피지 서버",
+  "author": "phans913",
+  "license": "MIT",
+  "homepage": "https://github.com/phans913/ripige-launcher",
+  "bugs": {
+    "url": "https://github.com/phans913/ripige-launcher/issues"
+  },
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "lint": "eslint .",
+    "generate:icons": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/generate_icons.ps1",
+    "build:bundle": "node scripts/build_release_assets.js",
+    "verify:release": "node scripts/verify_release_assets.js",
+    "verify:java17": "node scripts/verify_java17.js",
+    "dist": "electron-builder build",
+    "dist:win": "electron-builder build --win --x64"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@electron/remote": "^2.1.3",
+    "adm-zip": "^0.5.16",
+    "discord-rpc-patch": "^4.0.1",
+    "ejs": "^3.1.10",
+    "ejs-electron": "^3.0.0",
+    "fs-extra": "^11.3.3",
+    "github-syntax-dark": "^0.5.0",
+    "got": "^11.8.5",
+    "helios-core": "~2.3.0",
+    "helios-distribution-types": "^1.3.0",
+    "jquery": "^3.7.1",
+    "lodash.merge": "^4.6.2",
+    "semver": "^7.7.3",
+    "toml": "^3.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@stylistic/eslint-plugin": "^5.6.1",
+    "electron": "^39.2.7",
+    "electron-builder": "^26.4.0",
+    "eslint": "^9.39.2",
+    "globals": "^16.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phans913/ripige-launcher.git"
+  }
+}

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+release/
+release-input/
+tmp/
+pnpm-debug.log*
+npm-debug.log*
+*.log
+.DS_Store
+app/assets/defaults/distribution.local.json
+
