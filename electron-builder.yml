@@ -9,7 +9,7 @@ compression: 'maximum'
 files:
   - '**/*'
   - '!{dist,.git,.github,.vscode,node_modules,release,release-input,tmp}'
-  - '!{package-lock.json,branding-background.png}'
+  - '!{package-lock.json,branding-background.png,branding-icon-source.png}'
   - '!scripts/**'
   - '!test/**'
 

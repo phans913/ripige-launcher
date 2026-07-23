@@ -83,4 +83,4 @@ try {
     $sourceImage.Dispose()
 }
 
-Write-Output "Generated temporary launcher icons from $sourcePath"
+Write-Output "Generated launcher icons from $sourcePath"
