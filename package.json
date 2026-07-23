@@ -19,8 +19,8 @@
     "build:bundle": "node scripts/build_release_assets.js",
     "verify:release": "node scripts/verify_release_assets.js",
     "verify:java17": "node scripts/verify_java17.js",
-    "dist": "electron-builder build",
-    "dist:win": "electron-builder build --win --x64"
+    "dist": "electron-builder build --publish never",
+    "dist:win": "electron-builder build --win --x64 --publish never"
   },
   "engines": {
     "node": ">=22"
