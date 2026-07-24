@@ -42,7 +42,9 @@ function main() {
         throw new Error('The selected instance is not the required Minecraft 1.20.1 / Fabric Loader 0.19.3 instance.')
     }
 
-    const resourcePackDirectory = path.join(instanceDirectory, 'resourcepacks', BrandConfig.managedResourcePack)
+    const resourcePackDirectory = args['resource-pack']
+        ? path.resolve(args['resource-pack'])
+        : path.join(instanceDirectory, 'resourcepacks', BrandConfig.managedResourcePack)
     if(!fs.statSync(resourcePackDirectory).isDirectory()) {
         throw new Error(`Managed resource pack directory is missing: ${resourcePackDirectory}`)
     }
@@ -199,6 +201,7 @@ function main() {
         packVersion,
         mods: MOD_FILES.length,
         fabricLibraries: copiedLibraryFiles.size,
+        resourcePackDirectory,
         resourcePackFiles: resourcePackFiles.length,
         shaderPacks: 1,
         managedFiles: managedFiles.length,

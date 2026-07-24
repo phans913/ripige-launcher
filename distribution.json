@@ -1,12 +1,12 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "servers": [
     {
       "id": "ripige",
       "name": "리피지 서버",
       "description": "Minecraft 1.20.1 / Fabric",
       "icon": "https://raw.githubusercontent.com/phans913/ripige-launcher/main/app/assets/images/icon.png",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "address": "phans.p-e.kr:24454",
       "minecraftVersion": "1.20.1",
       "mainServer": true,
