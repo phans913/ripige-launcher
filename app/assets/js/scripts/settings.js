@@ -2,6 +2,7 @@
 const os     = require('os')
 const semver = require('semver')
 
+const BrandConfig    = require('./assets/js/brandconfig')
 const DropinModUtil  = require('./assets/js/dropinmodutil')
 const { MSFT_OPCODE, MSFT_REPLY_TYPE, MSFT_ERROR } = require('./assets/js/ipcconstants')
 
@@ -1451,7 +1452,7 @@ function populateReleaseNotes(){
     $.ajax({
         url: 'https://github.com/phans913/ripige-launcher/releases.atom',
         success: (data) => {
-            const version = 'v' + remote.app.getVersion()
+            const version = BrandConfig.releaseTagPrefix + remote.app.getVersion()
             const entries = $(data).find('entry')
             
             for(let i=0; i<entries.length; i++){
@@ -1535,7 +1536,7 @@ function populateSettingsUpdateInformation(data){
         settingsUpdateChangelogCont.style.display = 'none'
         populateVersionInformation(remote.app.getVersion(), settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
         settingsUpdateButtonStatus(Lang.queryJS('settings.updates.checkForUpdatesButton'), false, () => {
-            shell.openExternal('https://github.com/phans913/ripige-launcher/releases/latest')
+            shell.openExternal(`${BrandConfig.githubRepository}/releases?q=${encodeURIComponent(BrandConfig.releaseTagPrefix)}`)
         })
     }
 }

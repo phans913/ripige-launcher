@@ -1,5 +1,5 @@
 // Public OAuth client ID isolated here so it can be replaced with a dedicated one later.
-// Replace this one constant when a dedicated 리피지 Azure application is issued.
+// Shared with the Ripige launcher until a dedicated Blacksmith Azure application is issued.
 exports.AZURE_CLIENT_ID = '8075f7ce-dec1-4dec-9925-3d15372b291d'
 
 

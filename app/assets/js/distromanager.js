@@ -2,6 +2,7 @@ const { DistributionAPI } = require('helios-core/common')
 const fs = require('fs')
 const path = require('path')
 
+const BrandConfig = require('./brandconfig')
 const ConfigManager = require('./configmanager')
 
 function getRemoteDistributionUrl() {
@@ -25,7 +26,7 @@ const api = new DistributionAPI(
     ConfigManager.getLauncherDirectory(),
     null, // Injected forcefully by the preloader.
     null, // Injected forcefully by the preloader.
-    exports.REMOTE_DISTRO_URL || 'https://github.com/phans913/ripige-launcher/releases/latest/download/distribution.json',
+    exports.REMOTE_DISTRO_URL || BrandConfig.remoteDistributionUrl,
     false
 )
 

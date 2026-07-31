@@ -10,7 +10,7 @@ const DEFAULT_OPTIONS = [
     'guiScale:3',
     'soundCategory_master:0.15',
     'soundCategory_music:0.0',
-    `resourcePacks:["vanilla","fabric","file/${BrandConfig.managedResourcePack}"]`,
+    'resourcePacks:["vanilla"]',
     'incompatibleResourcePacks:[]',
     ''
 ].join('\n')

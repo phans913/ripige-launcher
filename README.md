@@ -1,11 +1,11 @@
-# 리피지 런처
+# 대장장이 런처
 
-Minecraft 1.20.1 Fabric 기반의 리피지 서버 전용 Windows 런처입니다.
+Minecraft 1.20.1 Forge 기반의 대장장이 서버 전용 Windows 런처입니다.
 
-- 서버: `phans.p-e.kr:24454`
-- Fabric Loader: `0.19.3`
-- 관리 모드: Fabric API `0.92.11`, Iris `1.7.6`, Sodium `0.5.13`
-- 관리 리소스팩: `ROW-1.20.1-Unpacked-Original`
+- 서버: `phans.p-e.kr:25565`
+- Forge: `47.4.10`
+- 관리 모드: Armourer's Workshop `2.1.4`
+- 원격 배포 매니페스트: `blacksmith` 브랜치의 `distribution.json`
 
 ## 개발
 
@@ -16,26 +16,22 @@ pnpm lint
 pnpm run dist:win
 ```
 
-## 게임 파일 번들 생성
+## 게임 릴리스 자산 생성
 
-로컬 경로는 소스에 고정하지 않고 명령 인자로 전달합니다.
+Forge 설치 경로와 모드 경로는 소스에 고정하지 않고 명령 인자로 전달합니다. 지정한 Minecraft 설치에는 `forge-47.4.10` 프로필과 해당 프로필이 사용하는 모든 런타임 라이브러리가 준비되어 있어야 합니다.
 
 ```powershell
-pnpm run build:bundle -- `
-  --instance "C:\path\to\minecraft\instance" `
+pnpm run build:release -- `
   --minecraft-install "C:\path\to\minecraft\Install" `
+  --forge-profile "forge-47.4.10" `
+  --mod "C:\path\to\armourersworkshop-forge-1.20.1-2.1.4.jar" `
   --version "1.0.0"
+
+pnpm run verify:release
 ```
 
-생성 결과는 `release/`에 저장됩니다. GitHub의 각 최신 릴리스에는 생성된 모든 자산을 함께 올려야 합니다.
+생성 결과는 `release/`에 저장됩니다. `distribution.json`은 `blacksmith` 브랜치에 커밋하고 나머지 자산은 `blacksmith-v1.0.0` 릴리스에 함께 게시합니다.
 
-## 아이콘 교체
+## 브랜딩
 
-`branding-background.png` 대신 사용할 정식 정사각형 원본을 `branding-icon-source.png`로 저장하고 아래 명령을 실행하면 런처용 PNG/ICO가 다시 만들어집니다.
-
-```powershell
-pnpm run generate:icons
-```
-
-현재 1.0.0은 제공된 런처 배경 이미지의 중앙 크롭을 임시 아이콘으로 사용합니다.
-
+아이콘, 배경, 폰트와 화면 레이아웃은 리피지 런처의 자산을 그대로 사용합니다. `pnpm run generate:icons`는 새 원본으로 아이콘을 교체할 때만 사용합니다.

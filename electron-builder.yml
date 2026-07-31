@@ -1,6 +1,6 @@
-appId: 'kr.phans.ripige.launcher'
-productName: '리피지 런처'
-artifactName: 'Ripige-Launcher-Setup-${version}.${ext}'
+appId: 'kr.phans.blacksmith.launcher'
+productName: '대장장이 런처'
+artifactName: 'Blacksmith-Launcher-Setup-${version}.${ext}'
 copyright: 'Copyright © 2026 phans913'
 
 asar: true

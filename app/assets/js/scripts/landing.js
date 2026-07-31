@@ -31,7 +31,6 @@ const {
 
 // Internal Requirements
 const DiscordWrapper          = require('./assets/js/discordwrapper')
-const BundleManager           = require('./assets/js/bundlemanager')
 const ProcessBuilder          = require('./assets/js/processbuilder')
 
 // Launch Elements
@@ -493,14 +492,6 @@ async function dlAsync(login = true) {
     toggleLaunchArea(true)
     setLaunchPercentage(0, 100)
 
-    try {
-        await BundleManager.ensureRuntimeManagedBundle({ logger: loggerLaunchSuite })
-    } catch(err) {
-        loggerLaunchSuite.error('Error while preparing bundled modpack.', err)
-        showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringFileDownloadTitle'), err.message || Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
-        return
-    }
-
     const fullRepairModule = new FullRepair(
         ConfigManager.getCommonDirectory(),
         ConfigManager.getInstanceDirectory(),
@@ -535,22 +526,6 @@ async function dlAsync(login = true) {
         showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringFileVerificationTitle'), err.displayable || Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
         return
     }
-
-    if(invalidFileCount > 0) {
-        loggerLaunchSuite.info('Invalid files found after validation, reapplying bundled modpack.')
-        try {
-            await BundleManager.ensureRuntimeManagedBundle({ force: true, logger: loggerLaunchSuite })
-            invalidFileCount = await fullRepairModule.verifyFiles(percent => {
-                setLaunchPercentage(percent)
-            })
-            setLaunchPercentage(100)
-        } catch(err) {
-            loggerLaunchSuite.error('Error while reapplying bundled modpack.', err)
-            showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringFileDownloadTitle'), err.message || Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
-            return
-        }
-    }
-    
 
     if(invalidFileCount > 0) {
         loggerLaunchSuite.info('Downloading files.')

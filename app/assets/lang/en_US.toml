@@ -212,7 +212,7 @@ checking = "Checking for News"
 
 [js.landing.discord]
 loading = "Loading game.."
-joining = "Joining Ripige..."
+joining = "Joining Blacksmith..."
 joined = "Exploring the Realm!"
 
 [js.overlay]

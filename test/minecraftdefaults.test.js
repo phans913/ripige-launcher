@@ -10,7 +10,7 @@ const LaunchPolicy = require('../app/assets/js/launchpolicy')
 const MinecraftDefaults = require('../app/assets/js/minecraftdefaults')
 
 test('first options file uses vanilla controls and preserves later user changes', () => {
-    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ripige-options-'))
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'blacksmith-options-'))
     try {
         assert.equal(MinecraftDefaults.ensureInitialOptions(root), true)
         const optionsPath = path.join(root, 'options.txt')
@@ -19,7 +19,8 @@ test('first options file uses vanilla controls and preserves later user changes'
         assert.match(initial, /^gamma:1\.0$/m)
         assert.match(initial, /^soundCategory_master:0\.15$/m)
         assert.match(initial, /^soundCategory_music:0\.0$/m)
-        assert.match(initial, new RegExp(`file/${BrandConfig.managedResourcePack}`))
+        assert.match(initial, /^resourcePacks:\["vanilla"\]$/m)
+        assert.doesNotMatch(initial, /fabric|ROW|Complementary/i)
         assert.doesNotMatch(initial, /^key_/m)
 
         const customized = `${initial}key_key.jump:key.keyboard.r\n`
@@ -31,8 +32,8 @@ test('first options file uses vanilla controls and preserves later user changes'
     }
 })
 
-test('servers.dat adds 리피지 exactly once and preserves existing entries', () => {
-    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ripige-servers-'))
+test('servers.dat adds 대장장이 exactly once and preserves existing entries', () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'blacksmith-servers-'))
     try {
         const serversPath = path.join(root, 'servers.dat')
         fs.writeFileSync(serversPath, MinecraftDefaults.createServersDat([
@@ -58,7 +59,7 @@ test('auto connect is enabled by default contract but remains user-toggleable', 
         serverAutoconnect: true,
         minecraftVersion: BrandConfig.minecraftVersion,
         hostname: 'phans.p-e.kr',
-        port: 24454
+        port: 25565
     }
     assert.deepEqual(
         LaunchPolicy.createAutoConnectArguments({ ...base, enabled: true }),

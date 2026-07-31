@@ -52,7 +52,7 @@ class ProcessBuilder {
             logger.info('Initial Minecraft options created:', this.gameDir)
         }
         if(MinecraftDefaults.ensureServerEntry(this.gameDir)) {
-            logger.info('리피지 server entry added to servers.dat:', this.gameDir)
+            logger.info('Blacksmith server entry added to servers.dat:', this.gameDir)
         }
         const tempNativePath = path.join(os.tmpdir(), ConfigManager.getTempNativeFolder(), crypto.pseudoRandomBytes(16).toString('hex'))
         process.throwDeprecation = true
@@ -391,7 +391,7 @@ class ProcessBuilder {
 
         // Java Arguments
         if(process.platform === 'darwin'){
-            args.push('-Xdock:name=리피지')
+            args.push('-Xdock:name=대장장이')
             args.push('-Xdock:icon=' + path.join(__dirname, '..', 'images', 'minecraft.icns'))
         }
         args.push('-Xmx' + ConfigManager.getMaxRAM(this.server.rawServer.id))
@@ -450,7 +450,7 @@ class ProcessBuilder {
 
         // Java Arguments
         if(process.platform === 'darwin'){
-            args.push('-Xdock:name=리피지')
+            args.push('-Xdock:name=대장장이')
             args.push('-Xdock:icon=' + path.join(__dirname, '..', 'images', 'minecraft.icns'))
         }
         args.push('-Xmx' + ConfigManager.getMaxRAM(this.server.rawServer.id))
@@ -552,7 +552,7 @@ class ProcessBuilder {
                             val = args[i].replace(argDiscovery, tempNativePath)
                             break
                         case 'launcher_name':
-                            val = args[i].replace(argDiscovery, 'Sample-Launcher')
+                            val = args[i].replace(argDiscovery, 'Blacksmith-Launcher')
                             break
                         case 'launcher_version':
                             val = args[i].replace(argDiscovery, this.launcherVersion)

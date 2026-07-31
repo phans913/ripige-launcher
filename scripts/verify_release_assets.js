@@ -7,14 +7,22 @@ const fs = require('fs-extra')
 const path = require('path')
 const { HeliosDistribution } = require('helios-core/common')
 const BrandConfig = require('../app/assets/js/brandconfig')
-const BundleManager = require('../app/assets/js/bundlemanager')
+const {
+    EXPECTED_MOD_SHA256,
+    MOD_ID,
+    getArgumentValue
+} = require('./build_release_assets')
 
-const args = parseArguments(process.argv.slice(2))
 const projectRoot = path.resolve(__dirname, '..')
 const releaseDirectory = path.join(projectRoot, 'release')
-const distribution = fs.readJsonSync(path.join(releaseDirectory, 'distribution.json'))
-const manifest = BundleManager.validateManifest(fs.readJsonSync(path.join(releaseDirectory, 'bundle-manifest.json')))
-const archive = new AdmZip(path.join(releaseDirectory, 'ripige-modpack-bundle.zip'))
+const distributionPath = path.join(releaseDirectory, 'distribution.json')
+const rootDistributionPath = path.join(projectRoot, 'distribution.json')
+const distribution = fs.readJsonSync(distributionPath)
+const expectedReleaseTag = `${BrandConfig.releaseTagPrefix}${distribution.version}`
+const expectedReleasePrefix = `${BrandConfig.githubRepository}/releases/download/${expectedReleaseTag}/`
+
+assert.deepEqual(fs.readJsonSync(rootDistributionPath), distribution)
+assert.equal(distribution.servers.length, 1)
 
 const parsed = new HeliosDistribution(
     distribution,
@@ -23,48 +31,91 @@ const parsed = new HeliosDistribution(
 )
 const server = parsed.getServerById(BrandConfig.instanceId)
 assert.ok(server)
+assert.equal(server.rawServer.name, BrandConfig.serverName)
 assert.equal(server.rawServer.address, BrandConfig.serverAddress)
 assert.equal(server.rawServer.autoconnect, true)
 assert.equal(server.rawServer.mainServer, true)
 assert.equal(server.rawServer.minecraftVersion, BrandConfig.minecraftVersion)
-assert.equal(server.modules.filter(module => module.rawModule.type === 'Fabric').length, 1)
-assert.equal(server.modules.filter(module => module.rawModule.type === 'FabricMod').length, 3)
+assert.equal(server.rawServer.javaOptions.supported, '>=17 <18')
+assert.equal(server.rawServer.javaOptions.suggestedMajor, 17)
 
-const resourcePackFiles = manifest.files.filter(file =>
-    file.path.startsWith(`instances/${BrandConfig.instanceId}/resourcepacks/${BrandConfig.managedResourcePack}/`)
+const forgeModules = server.modules.filter(module => module.rawModule.type === 'ForgeHosted')
+const modModules = server.modules.filter(module => module.rawModule.type === 'ForgeMod')
+assert.equal(forgeModules.length, 1)
+assert.equal(modModules.length, 1)
+assert.equal(modModules[0].rawModule.id, MOD_ID)
+assert.deepEqual(modModules[0].rawModule.required, { value: true, def: true })
+assert.equal(
+    modModules[0].getPath().endsWith(path.join('modstore', 'kr', 'phans', 'blacksmith', 'armourersworkshop', '2.1.4', 'armourersworkshop-2.1.4.jar')),
+    true
 )
-const shaderPackFiles = manifest.files.filter(file =>
-    file.path.startsWith(`instances/${BrandConfig.instanceId}/shaderpacks/`)
+assert.equal(server.modules.some(module => /Fabric/i.test(module.rawModule.type)), false)
+
+const forgeModule = forgeModules[0]
+assert.equal(
+    forgeModule.rawModule.id,
+    `net.minecraftforge:forge:${BrandConfig.minecraftVersion}-${BrandConfig.forgeVersion}`
 )
-const managedMods = manifest.files.filter(file => file.path.startsWith('common/mods/fabric/'))
-assert.ok(resourcePackFiles.length > 0)
-assert.equal(managedMods.length, 3)
-assert.equal(resourcePackFiles.some(file => file.path.endsWith('.zip')), false)
-assert.deepEqual(shaderPackFiles.map(file => path.posix.basename(file.path)), [BrandConfig.managedShaderPack])
+const versionManifestModule = forgeModule.subModules.find(module => module.rawModule.type === 'VersionManifest')
+assert.ok(versionManifestModule)
+assert.equal(versionManifestModule.rawModule.id, BrandConfig.forgeProfile)
 
-if(args['resource-pack']) {
-    verifyResourcePackSource(path.resolve(args['resource-pack']), resourcePackFiles)
-}
-
-const archiveEntries = archive.getEntries().filter(entry => !entry.isDirectory).map(entry => entry.entryName.replace(/\\/g, '/')).sort()
-assert.deepEqual(archiveEntries, manifest.files.map(file => file.path).sort())
-
-for(const module of flattenModules(server.modules)) {
+const flattenedModules = flattenModules(server.modules)
+const seenAssets = new Set()
+for(const module of flattenedModules) {
     const artifact = module.rawModule.artifact
+    assert.ok(artifact.url.startsWith(expectedReleasePrefix), `Unexpected release URL: ${artifact.url}`)
+    assert.equal(artifact.url.includes('/releases/latest/'), false)
     const assetName = decodeURIComponent(new URL(artifact.url).pathname.split('/').pop())
     const localAsset = path.join(releaseDirectory, assetName)
     assert.equal(fs.existsSync(localAsset), true, `Missing release asset ${assetName}`)
-    assert.equal(fs.statSync(localAsset).size, artifact.size)
-    assert.equal(hashFile(localAsset, 'md5'), artifact.MD5)
+    assert.equal(fs.statSync(localAsset).size, artifact.size, `Size mismatch for ${assetName}`)
+    assert.equal(hashFile(localAsset, 'md5'), artifact.MD5.toLowerCase(), `MD5 mismatch for ${assetName}`)
+    assert.equal(hashFile(localAsset, 'sha1'), artifact.hash.toLowerCase(), `SHA-1 mismatch for ${assetName}`)
+    seenAssets.add(assetName)
 }
+
+const versionAssetName = decodeURIComponent(new URL(versionManifestModule.rawModule.artifact.url).pathname.split('/').pop())
+const versionManifest = fs.readJsonSync(path.join(releaseDirectory, versionAssetName))
+assert.equal(versionManifest.id, BrandConfig.forgeProfile)
+assert.equal(versionManifest.inheritsFrom, BrandConfig.minecraftVersion)
+assert.equal(getArgumentValue(versionManifest.arguments.game, '--fml.forgeVersion'), BrandConfig.forgeVersion)
+const mcpVersion = getArgumentValue(versionManifest.arguments.game, '--fml.mcpVersion')
+
+const requiredGeneratedModules = [
+    `net.minecraftforge:forge:${BrandConfig.minecraftVersion}-${BrandConfig.forgeVersion}:universal`,
+    `net.minecraftforge:forge:${BrandConfig.minecraftVersion}-${BrandConfig.forgeVersion}:client`,
+    `net.minecraft:client:${BrandConfig.minecraftVersion}-${mcpVersion}:srg`,
+    `net.minecraft:client:${BrandConfig.minecraftVersion}-${mcpVersion}:extra`
+]
+const forgeSubmoduleIds = new Set(forgeModule.subModules.map(module => module.rawModule.id))
+for(const id of requiredGeneratedModules) {
+    assert.equal(forgeSubmoduleIds.has(id), true, `Missing generated Forge runtime module ${id}`)
+}
+
+const modAssetName = decodeURIComponent(new URL(modModules[0].rawModule.artifact.url).pathname.split('/').pop())
+const modPath = path.join(releaseDirectory, modAssetName)
+assert.equal(hashFile(modPath, 'sha256'), EXPECTED_MOD_SHA256)
+const modMetadata = new AdmZip(modPath).readAsText('META-INF/mods.toml')
+assert.match(modMetadata, /modId\s*=\s*"armourers_workshop"/)
+assert.match(modMetadata, /version\s*=\s*"2\.1\.4"/)
+
+const distributionText = fs.readFileSync(distributionPath, 'utf8')
+assert.equal(/Fabric|fabric-loader|ROW|Complementary/.test(distributionText), false)
+assert.equal(server.rawServer.icon, `${BrandConfig.githubRepository.replace('https://github.com/', 'https://raw.githubusercontent.com/')}/blacksmith/app/assets/images/icon.png`)
+
+const releaseFiles = fs.readdirSync(releaseDirectory)
+const unreferencedAssets = releaseFiles.filter(file => file !== 'distribution.json' && !seenAssets.has(file))
+assert.deepEqual(unreferencedAssets, [])
 
 process.stdout.write(`${JSON.stringify({
     server: server.rawServer.name,
     address: server.rawServer.address,
-    managedMods: managedMods.length,
-    resourcePackFiles: resourcePackFiles.length,
-    shaderPacks: shaderPackFiles.length,
-    archiveEntries: archiveEntries.length
+    releaseTag: expectedReleaseTag,
+    forgeVersion: BrandConfig.forgeVersion,
+    forgeLibraries: forgeModule.subModules.filter(module => module.rawModule.type === 'Library').length,
+    mods: modModules.length,
+    releaseAssets: releaseFiles.length
 }, null, 2)}\n`)
 
 function flattenModules(modules) {
@@ -78,51 +129,4 @@ function flattenModules(modules) {
 
 function hashFile(filePath, algorithm) {
     return crypto.createHash(algorithm).update(fs.readFileSync(filePath)).digest('hex')
-}
-
-function parseArguments(argv) {
-    argv = argv.filter(argument => argument !== '--')
-    const parsed = {}
-    for(let i = 0; i < argv.length; i += 2) {
-        const key = argv[i]
-        const value = argv[i + 1]
-        if(!key?.startsWith('--') || value == null) {
-            throw new Error(`Invalid argument sequence near ${key || '<empty>'}`)
-        }
-        parsed[key.slice(2)] = value
-    }
-    return parsed
-}
-
-function verifyResourcePackSource(sourceDirectory, manifestFiles) {
-    assert.equal(fs.statSync(sourceDirectory).isDirectory(), true)
-    const prefix = `instances/${BrandConfig.instanceId}/resourcepacks/${BrandConfig.managedResourcePack}/`
-    const manifestByPath = new Map(manifestFiles.map(file => [file.path.slice(prefix.length), file]))
-    const sourceFiles = listFilesRecursive(sourceDirectory)
-    assert.equal(manifestByPath.size, sourceFiles.length)
-
-    for(const sourcePath of sourceFiles) {
-        const relativePath = normalizePath(path.relative(sourceDirectory, sourcePath))
-        const descriptor = manifestByPath.get(relativePath)
-        assert.ok(descriptor, `Resource pack manifest entry is missing: ${relativePath}`)
-        assert.equal(descriptor.size, fs.statSync(sourcePath).size, `Resource pack size differs: ${relativePath}`)
-        assert.equal(descriptor.sha256, hashFile(sourcePath, 'sha256'), `Resource pack hash differs: ${relativePath}`)
-    }
-}
-
-function listFilesRecursive(directory) {
-    const files = []
-    for(const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-        const entryPath = path.join(directory, entry.name)
-        if(entry.isDirectory()) {
-            files.push(...listFilesRecursive(entryPath))
-        } else if(entry.isFile()) {
-            files.push(entryPath)
-        }
-    }
-    return files
-}
-
-function normalizePath(value) {
-    return value.split(path.sep).join('/')
 }
