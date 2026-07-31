@@ -85,6 +85,10 @@ const mcpVersion = getArgumentValue(versionManifest.arguments.game, '--fml.mcpVe
 const requiredGeneratedModules = [
     `net.minecraftforge:forge:${BrandConfig.minecraftVersion}-${BrandConfig.forgeVersion}:universal`,
     `net.minecraftforge:forge:${BrandConfig.minecraftVersion}-${BrandConfig.forgeVersion}:client`,
+    `net.minecraftforge:fmlcore:${BrandConfig.minecraftVersion}-${BrandConfig.forgeVersion}`,
+    `net.minecraftforge:javafmllanguage:${BrandConfig.minecraftVersion}-${BrandConfig.forgeVersion}`,
+    `net.minecraftforge:lowcodelanguage:${BrandConfig.minecraftVersion}-${BrandConfig.forgeVersion}`,
+    `net.minecraftforge:mclanguage:${BrandConfig.minecraftVersion}-${BrandConfig.forgeVersion}`,
     `net.minecraft:client:${BrandConfig.minecraftVersion}-${mcpVersion}:srg`,
     `net.minecraft:client:${BrandConfig.minecraftVersion}-${mcpVersion}:extra`
 ]

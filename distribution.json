@@ -1,12 +1,12 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "servers": [
     {
       "id": "blacksmith",
       "name": "대장장이 서버",
       "description": "Minecraft 1.20.1 / Forge 47.4.10 / Armourer's Workshop 2.1.4",
       "icon": "https://raw.githubusercontent.com/phans913/ripige-launcher/blacksmith/app/assets/images/icon.png",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "address": "phans.p-e.kr:25565",
       "minecraftVersion": "1.20.1",
       "mainServer": true,
@@ -29,7 +29,7 @@
             "size": 10,
             "MD5": "0ec9d8a17e73748585d74d7fd0275fcb",
             "hash": "23959adca361e57cae5c94605888ce6e6ec3b461",
-            "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/forge-1.20.1-47.4.10.jar"
+            "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/forge-1.20.1-47.4.10.jar"
           },
           "subModules": [
             {
@@ -40,7 +40,7 @@
                 "size": 14489,
                 "MD5": "2504bc4349c300c3cd8a793fbe048219",
                 "hash": "e4c45d03b2f0b2698097b63374431ffcc2a9018b",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/forge-47.4.10.json"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/forge-47.4.10.json"
               }
             },
             {
@@ -51,7 +51,7 @@
                 "size": 88749,
                 "MD5": "d9ff48d1c68388270388b803fa42611e",
                 "hash": "51e6a22c6c716beb11e244bf5b8be480f51dd6b5",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/securejarhandler-2.1.10.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/securejarhandler-2.1.10.jar"
               }
             },
             {
@@ -62,7 +62,7 @@
                 "size": 126113,
                 "MD5": "f5adf3bfc54fb3d2cd8e3a1f275084bc",
                 "hash": "dc19ecb3f7889b7860697215cae99c0f9b6f6b4b",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/asm-9.8.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/asm-9.8.jar"
               }
             },
             {
@@ -73,7 +73,7 @@
                 "size": 73498,
                 "MD5": "c8c3d9ccf240144e74d94ff658b024c9",
                 "hash": "36e4d212970388e5bd2c5180292012502df461bb",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/asm-commons-9.8.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/asm-commons-9.8.jar"
               }
             },
             {
@@ -84,7 +84,7 @@
                 "size": 51934,
                 "MD5": "4ab1aaec43c77a2d9b56e6d6d496f705",
                 "hash": "018419ca5b77a2f81097c741e7872e6ab8d2f40d",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/asm-tree-9.8.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/asm-tree-9.8.jar"
               }
             },
             {
@@ -95,7 +95,7 @@
                 "size": 94559,
                 "MD5": "62498ef324bdab15f407d703f7d78d19",
                 "hash": "395f1c1f035258511f27bc9b2583d76e4b143f59",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/asm-util-9.8.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/asm-util-9.8.jar"
               }
             },
             {
@@ -106,7 +106,7 @@
                 "size": 35151,
                 "MD5": "3d63508405f5610fc2ea673ff5471553",
                 "hash": "b9747a320844b6cb1eacd90d8ecfd260a16c01d3",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/asm-analysis-9.8.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/asm-analysis-9.8.jar"
               }
             },
             {
@@ -117,7 +117,7 @@
                 "size": 77756,
                 "MD5": "f0d3533f9437ba4428eaee9f28f7ecd9",
                 "hash": "272d240aa73f42195b2a68e2ebd8b701ecf41f63",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/accesstransformers-8.0.4.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/accesstransformers-8.0.4.jar"
               }
             },
             {
@@ -128,7 +128,7 @@
                 "size": 337868,
                 "MD5": "0dcc4b860d5d8d2852ab94d58c56ca2d",
                 "hash": "428664f05d2b7f7b7610204b5aa7c1763f62011a",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/antlr4-runtime-4.9.1.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/antlr4-runtime-4.9.1.jar"
               }
             },
             {
@@ -139,7 +139,7 @@
                 "size": 53985,
                 "MD5": "2a6245210b446b2144071e71ca13432b",
                 "hash": "699143dd438431d06b57416944f7cedbe52e1475",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/eventbus-6.0.5.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/eventbus-6.0.5.jar"
               }
             },
             {
@@ -150,7 +150,7 @@
                 "size": 29831,
                 "MD5": "bd34d20287dc95201fe9475a8bbc2540",
                 "hash": "3b4972a0cdb135853dba219be61a79b22cff1309",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/forgespi-7.0.1.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/forgespi-7.0.1.jar"
               }
             },
             {
@@ -161,7 +161,7 @@
                 "size": 31872,
                 "MD5": "5295505357ba9b98450c5e3121f82191",
                 "hash": "e30bab269d896613e38396274711410b3a0e4b87",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/coremods-5.2.4.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/coremods-5.2.4.jar"
               }
             },
             {
@@ -172,7 +172,7 @@
                 "size": 130343,
                 "MD5": "07507d18d72661f8ae6a5da75bbf35be",
                 "hash": "06d9443f56f50bb85cea383686ff9c867391458b",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/modlauncher-10.0.9.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/modlauncher-10.0.9.jar"
               }
             },
             {
@@ -183,7 +183,7 @@
                 "size": 2834,
                 "MD5": "2d1016ebe4c1a63dd50a59d26bd12db1",
                 "hash": "54d7a0a5e8fdb71b973025caa46f341ae5904f39",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/unsafe-0.2.0.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/unsafe-0.2.0.jar"
               }
             },
             {
@@ -194,7 +194,7 @@
                 "size": 2572,
                 "MD5": "8df9c5bf87d004ddb884eca99bc2a4b1",
                 "hash": "f3da18e12c696d35a47c82cbb2cc8b5aa15e1154",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/mergetool-1.1.5-api.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/mergetool-1.1.5-api.jar"
               }
             },
             {
@@ -205,7 +205,7 @@
                 "size": 199834,
                 "MD5": "d83ab07267e402131fb93d899a57f5cd",
                 "hash": "510f174abbf1c947494db50ef2445683bd52c230",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/core-3.6.4.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/core-3.6.4.jar"
               }
             },
             {
@@ -216,7 +216,7 @@
                 "size": 31816,
                 "MD5": "bc95d0709fff2164b01fd09fbc988be8",
                 "hash": "51d6cefb2b55ee55ee26b16391212fb2c7dfb4f4",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/toml-3.6.4.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/toml-3.6.4.jar"
               }
             },
             {
@@ -227,7 +227,7 @@
                 "size": 58077,
                 "MD5": "ce473b0d9fbfd10fe147f03fe8707d67",
                 "hash": "4433f50c07debefaed0553bd0068f4f48d449313",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/maven-artifact-3.8.5.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/maven-artifact-3.8.5.jar"
               }
             },
             {
@@ -238,7 +238,7 @@
                 "size": 18281,
                 "MD5": "d4a375bf382f726cf1a650ccb38a736c",
                 "hash": "a01aaa6ddaea9ec07ec4f209487b7a46a526283a",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/typetools-0.6.3.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/typetools-0.6.3.jar"
               }
             },
             {
@@ -249,7 +249,7 @@
                 "size": 15977,
                 "MD5": "679363fa893293791e55a21f81342f87",
                 "hash": "96d02cd3b384ff015a8fef4223bcb4ccf1717c95",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/terminalconsoleappender-1.2.0.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/terminalconsoleappender-1.2.0.jar"
               }
             },
             {
@@ -260,7 +260,7 @@
                 "size": 150765,
                 "MD5": "a2e7b012cd9802f83321187409174a94",
                 "hash": "4382ab1382c7b6f379377ed5f665dc2f6e1218bc",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/jline-reader-3.12.1.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/jline-reader-3.12.1.jar"
               }
             },
             {
@@ -271,7 +271,7 @@
                 "size": 211712,
                 "MD5": "3c52be5ab5e3847be6e62269de924cb0",
                 "hash": "c777448314e050d980a6b697c140f3bfe9eb7416",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/jline-terminal-3.12.1.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/jline-terminal-3.12.1.jar"
               }
             },
             {
@@ -282,7 +282,7 @@
                 "size": 1089277,
                 "MD5": "19b3a2ae9e445a6e626fd7d1648cfcb8",
                 "hash": "9d1c0c3a304ae6697ecd477218fa61b850bf57fc",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/mixin-0.8.5.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/mixin-0.8.5.jar"
               }
             },
             {
@@ -293,7 +293,7 @@
                 "size": 2167292,
                 "MD5": "a9b3360e6a486cf62c1952c7816b7d97",
                 "hash": "f67f5ffaa5f5130cf6fb9b133da00c7df3b532a5",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/nashorn-core-15.4.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/nashorn-core-15.4.jar"
               }
             },
             {
@@ -304,7 +304,7 @@
                 "size": 17374,
                 "MD5": "2bb6cbe0e6c6fbcd8f92d2e6b1ea678e",
                 "hash": "376cc9c8ea60720cf027c01fc033de915699801c",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/JarJarSelector-0.3.19.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/JarJarSelector-0.3.19.jar"
               }
             },
             {
@@ -315,7 +315,7 @@
                 "size": 15895,
                 "MD5": "9633546d299d4282ca68d10582be1c8f",
                 "hash": "0083feaa9b770e6ac0e96ee4fc23fa89325c5fe2",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/JarJarMetadata-0.3.19.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/JarJarMetadata-0.3.19.jar"
               }
             },
             {
@@ -326,7 +326,7 @@
                 "size": 8284,
                 "MD5": "48f5255aa337344c467c0150d347813d",
                 "hash": "0c546e00443d8432cda6baa1c860346980742628",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/bootstraplauncher-1.1.2.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/bootstraplauncher-1.1.2.jar"
               }
             },
             {
@@ -337,7 +337,7 @@
                 "size": 32195,
                 "MD5": "c2be1a88b63eb1b58b00ab6e498cd97d",
                 "hash": "2464eb7d6b9ddb9db36a82cf8a95193e5c6fe020",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/JarJarFileSystems-0.3.19.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/JarJarFileSystems-0.3.19.jar"
               }
             },
             {
@@ -348,7 +348,7 @@
                 "size": 267079,
                 "MD5": "9446521da84ab53aa7a81af82d4e854a",
                 "hash": "55c46d27e7cfc8b829af8a28e562a7d290fa38b6",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/fmlloader-1.20.1-47.4.10.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/fmlloader-1.20.1-47.4.10.jar"
               }
             },
             {
@@ -359,7 +359,7 @@
                 "size": 170518,
                 "MD5": "828cdcc361baffcdd38d7b7d05c62e35",
                 "hash": "a262fa19e65f643aae210b4275b53bee053aa765",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/fmlearlydisplay-1.20.1-47.4.10.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/fmlearlydisplay-1.20.1-47.4.10.jar"
               }
             },
             {
@@ -370,7 +370,7 @@
                 "size": 2777708,
                 "MD5": "f202df135ad32fef7e7c42e957c142af",
                 "hash": "41747347bacead85302e07082073fb46c2f69361",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/forge-1.20.1-47.4.10-universal.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/forge-1.20.1-47.4.10-universal.jar"
               }
             },
             {
@@ -381,7 +381,51 @@
                 "size": 4848366,
                 "MD5": "5c4d8867f3152f9c397859436a06321c",
                 "hash": "4d8a9a63dc16a45d7fc5c54c627234f601d0cc17",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/forge-1.20.1-47.4.10-client.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/forge-1.20.1-47.4.10-client.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:fmlcore:1.20.1-47.4.10",
+              "name": "net.minecraftforge:fmlcore:1.20.1-47.4.10",
+              "type": "Library",
+              "artifact": {
+                "size": 118913,
+                "MD5": "340eb6124a32dab3bfaea8f1b2f3dd02",
+                "hash": "94dae566be650566ea9115a1414ab76bfcf5a804",
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/fmlcore-1.20.1-47.4.10.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:javafmllanguage:1.20.1-47.4.10",
+              "name": "net.minecraftforge:javafmllanguage:1.20.1-47.4.10",
+              "type": "Library",
+              "artifact": {
+                "size": 16854,
+                "MD5": "1193446859d078e83d9fcc4d8a39f44d",
+                "hash": "ccc533c7dd67e0983217197d7549c8b49e7ab453",
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/javafmllanguage-1.20.1-47.4.10.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:lowcodelanguage:1.20.1-47.4.10",
+              "name": "net.minecraftforge:lowcodelanguage:1.20.1-47.4.10",
+              "type": "Library",
+              "artifact": {
+                "size": 7398,
+                "MD5": "39c68f8be018557068512f16cf3f97fa",
+                "hash": "e9a2879fe3612ea34b9728ec2633304a1e67d480",
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/lowcodelanguage-1.20.1-47.4.10.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:mclanguage:1.20.1-47.4.10",
+              "name": "net.minecraftforge:mclanguage:1.20.1-47.4.10",
+              "type": "Library",
+              "artifact": {
+                "size": 4999,
+                "MD5": "13e469f44fc6fff975688c6b18f8e9a1",
+                "hash": "ec5cefbbc65c67302b8fac317010faab85fa14b9",
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/mclanguage-1.20.1-47.4.10.jar"
               }
             },
             {
@@ -392,7 +436,7 @@
                 "size": 18842082,
                 "MD5": "8bfacfba4f54cda741019756165c5ecf",
                 "hash": "3c8aa19b710a3a68f721210eb69b74594d13e218",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/client-1.20.1-20230612.114412-srg.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/client-1.20.1-20230612.114412-srg.jar"
               }
             },
             {
@@ -403,7 +447,7 @@
                 "size": 10436626,
                 "MD5": "da6bb1a2c23108392fd6c103da40867c",
                 "hash": "8c5a95cbce940cfdb304376ae9fea47968d02587",
-                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/client-1.20.1-20230612.114412-extra.jar"
+                "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/client-1.20.1-20230612.114412-extra.jar"
               }
             }
           ]
@@ -420,7 +464,7 @@
             "size": 3565266,
             "MD5": "3d720853815f7ed3c77e6bdab1e9e250",
             "hash": "ec6ab778ccfc271a72c865a2b0f8bd2b41d8de70",
-            "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.0/armourersworkshop-forge-1.20.1-2.1.4.jar"
+            "url": "https://github.com/phans913/ripige-launcher/releases/download/blacksmith-v1.0.1/armourersworkshop-forge-1.20.1-2.1.4.jar"
           }
         }
       ]
